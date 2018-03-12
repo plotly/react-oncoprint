@@ -1,0 +1,29 @@
+{
+  "name": "react-oncoprint",
+  "version": "1.0.0",
+  "description": "OncoPrint React component based on plotly.js",
+  "main": "index.js",
+  "author": "William Durand <will+git@drnd.me>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addon-links": "^3.3.15",
+    "@storybook/react": "^3.3.15",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.67.1",
+    "plotly.js": "^1.35.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-plotly.js": "^1.7.0"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}
