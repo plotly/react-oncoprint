@@ -10,20 +10,31 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.3.15",
     "@storybook/addon-links": "^3.3.15",
+    "@storybook/addon-notes": "^3.3.15",
     "@storybook/react": "^3.3.15",
+    "@storybook/storybook-deployer": "^2.3.0",
+    "array-to-table": "^1.0.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-preset-flow": "^6.23.0",
+    "babel-jest": "^22.4.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "flow-bin": "^0.67.1",
+    "html-tablify": "^2.0.2",
+    "jest": "^22.4.2",
     "plotly.js": "^1.35.2",
+    "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-plotly.js": "^1.7.0"
   },
   "scripts": {
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages",
+    "prettier": "prettier --single-quote --trailing-comma es5 --arrow-parens always --write src/**/*.js stories/*.js tests/**/*.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "jest"
   }
 }
