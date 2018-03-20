@@ -7,9 +7,9 @@ import dataset2 from './fixtures/dataset-2';
 import dataset3 from './fixtures/dataset-3';
 
 describe('utils', () => {
-  describe('uniqueGenes()', () => {
-    it('returns a list of gene names', () => {
-      const genes = utils.uniqueGenes(dataset1);
+  describe('getSortedGenes()', () => {
+    it('returns a sorted set of gene names', () => {
+      const genes = utils.getSortedGenes(dataset1);
 
       expect(genes).toHaveLength(3);
       expect(genes).toEqual(['BRCA1', 'PTEN', 'TP53']);
@@ -28,7 +28,7 @@ describe('utils', () => {
       expect(eventsByType['FUSION']).toEqual({
         alteration: 'FUSION',
         type: 'FUSION',
-        entries: [
+        events: [
           dataset1[0],
           dataset1[1],
         ],
@@ -63,18 +63,18 @@ describe('utils', () => {
     });
   });
 
-  describe('getSamples()', () => {
+  describe('getSortedSamples()', () => {
     it('returns a sorted set of samples', () => {
-      const sortedSamples1 = utils.getSamples(dataset1);
+      const sortedSamples1 = utils.getSortedSamples(dataset1);
       expect(sortedSamples1).toMatchSnapshot();
 
-      const sortedSamples2 = utils.getSamples(dataset2);
+      const sortedSamples2 = utils.getSortedSamples(dataset2);
       expect(sortedSamples2).toMatchSnapshot();
 
-      const sortedSamples3 = utils.getSamples(dataset3);
+      const sortedSamples3 = utils.getSortedSamples(dataset3);
       expect(sortedSamples3).toMatchSnapshot();
 
-      const cBioPortalSamples = utils.getSamples(cBioPortalData);
+      const cBioPortalSamples = utils.getSortedSamples(cBioPortalData);
       expect(cBioPortalSamples).toMatchSnapshot();
     });
   });

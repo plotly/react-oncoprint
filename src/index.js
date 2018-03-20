@@ -7,32 +7,32 @@ import {
   getColor,
   getDisplayName,
   getGeneNames,
-  getSamples,
+  getSortedGenes,
+  getSortedSamples,
   isMutation,
-  uniqueGenes,
 } from './utils';
-import type { AggregatedEntries, Entry, Entries } from './types';
+import type { AggregatedEvents, Event, Events } from './types';
 
 type Props = {|
-  data: Entries,
+  data: Events,
   fullWidth: boolean,
+  padding: number,
   sampleColor: string,
 |};
 
 class OncoPrint extends React.Component<Props> {
   static defaultProps = {
     fullWidth: false,
+    padding: 0.05,
     sampleColor: 'rgb(190, 190, 190)',
   };
 
-  render() {
-    const padding = 0.05;
+  getPlotData() {
+    const { data: inputData, padding } = this.props;
 
-    const inputData = this.props.data;
-    const genes = uniqueGenes(this.props.data);
-    const nbEntries = inputData.length;
-    const entries = aggregate(inputData);
-    const samples = getSamples(inputData);
+    const events = aggregate(inputData);
+    const genes = getSortedGenes(inputData);
+    const samples = getSortedSamples(inputData);
 
     let base = 0;
     const bBackground = [];
@@ -63,12 +63,12 @@ class OncoPrint extends React.Component<Props> {
 
     const data = [background];
 
-    Object.keys(entries).forEach((key: string, index: number) => {
-      const aggr = entries[key];
+    Object.keys(events).forEach((key: string, index: number) => {
+      const aggr = events[key];
       const width = aggr.type === 'CNA' ? 0.8 : aggr.type === 'EXP' ? 0.6 : 0.4;
 
       // where to draw a bar for this entry
-      const indexes = aggr.entries.map((e) => e.sample).map((s) => {
+      const indexes = aggr.events.map((e) => e.sample).map((s) => {
         return samples.findIndex((sample) => sample === s);
       });
 
@@ -76,21 +76,26 @@ class OncoPrint extends React.Component<Props> {
         base: indexes.map((i) => i + padding),
         hoverinfo: 'name',
         marker: {
-          color: getColor(aggr.entries[0]),
+          color: getColor(aggr.events[0]),
         },
-        name: getDisplayName(aggr.entries[0]),
+        name: getDisplayName(aggr.events[0]),
         orientation: 'h',
         type: 'bar',
         width,
-        x: Array(aggr.entries.length)
+        x: Array(aggr.events.length)
           .fill(1)
           .map((i) => i - padding * 2),
-        y: getGeneNames(aggr.entries),
+        y: getGeneNames(aggr.events),
       });
     });
 
-    const props = {};
-    props.layout = {
+    return data;
+  }
+
+  render() {
+    const plotProps = {};
+
+    plotProps.layout = {
       barmode: 'stack',
       hovermode: 'closest',
       xaxis: {
@@ -105,17 +110,17 @@ class OncoPrint extends React.Component<Props> {
       },
     };
 
-    props.data = data;
+    plotProps.data = this.getPlotData();
 
     if (this.props.fullWidth) {
-      props.style = {
+      plotProps.style = {
         width: '100%',
         height: '100%',
       };
-      props.useResizeHandler = true;
+      plotProps.useResizeHandler = true;
     }
 
-    return <Plot {...props} />;
+    return <Plot {...plotProps} />;
   }
 }
 

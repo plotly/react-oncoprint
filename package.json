@@ -25,6 +25,7 @@
     "flow-bin": "^0.67.1",
     "html-tablify": "^2.0.2",
     "jest": "^22.4.2",
+    "oncoprintjs": "^1.0.87",
     "plotly.js": "^1.35.2",
     "prettier": "^1.11.1",
     "react": "^16.2.0",

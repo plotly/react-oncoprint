@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`utils getSamples() returns a sorted set of samples 1`] = `
+exports[`utils getSortedSamples() returns a sorted set of samples 1`] = `
 Array [
   "TCGA-25-2392-01",
   "TCGA-25-2393-01",
@@ -14,7 +14,7 @@ Array [
 ]
 `;
 
-exports[`utils getSamples() returns a sorted set of samples 2`] = `
+exports[`utils getSortedSamples() returns a sorted set of samples 2`] = `
 Array [
   "TCGA-25-2392-01",
   "TCGA-25-2393-01",
@@ -54,7 +54,7 @@ Array [
 ]
 `;
 
-exports[`utils getSamples() returns a sorted set of samples 3`] = `
+exports[`utils getSortedSamples() returns a sorted set of samples 3`] = `
 Array [
   "TCGA-23-1026-01",
   "TCGA-04-1356-01",
@@ -110,7 +110,7 @@ Array [
 ]
 `;
 
-exports[`utils getSamples() returns a sorted set of samples 4`] = `
+exports[`utils getSortedSamples() returns a sorted set of samples 4`] = `
 Array [
   "TCGA-25-2392-01",
   "TCGA-25-2393-01",
