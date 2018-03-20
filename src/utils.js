@@ -47,7 +47,7 @@ const SupportedEvents = {
     colorHTML: '#0000ff',
     displayName: 'Deep deletion',
   },
-  // mRNA expresultsions
+  // mRNA expressions
   UP: {
     colorHTML: '#ff9999',
     displayName: 'mRNA Upregulation',

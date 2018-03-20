@@ -27,8 +27,8 @@ class OncoPrint extends React.Component<Props> {
     sampleColor: 'rgb(190, 190, 190)',
   };
 
-  getPlotData() {
-    const { data: inputData, padding } = this.props;
+  getData() {
+    const { data: inputData, padding, sampleColor } = this.props;
 
     const events = aggregate(inputData);
     const genes = getSortedGenes(inputData);
@@ -40,6 +40,7 @@ class OncoPrint extends React.Component<Props> {
     const xBackground = [];
     const yBackground = [];
 
+    // Background is used to draw the matrix (genes * samples)
     samples.forEach((s: string) => {
       bBackground.push(...Array(genes.length).fill(base++));
       tBackground.push(...Array(genes.length).fill(s));
@@ -51,7 +52,7 @@ class OncoPrint extends React.Component<Props> {
       base: bBackground.map((i) => i + padding),
       hoverinfo: 'text',
       marker: {
-        color: this.props.sampleColor,
+        color: sampleColor,
       },
       name: 'No alteration',
       text: tBackground,
@@ -62,7 +63,6 @@ class OncoPrint extends React.Component<Props> {
     };
 
     const data = [background];
-
     Object.keys(events).forEach((key: string, index: number) => {
       const aggr = events[key];
       const width = aggr.type === 'CNA' ? 0.8 : aggr.type === 'EXP' ? 0.6 : 0.4;
@@ -92,10 +92,8 @@ class OncoPrint extends React.Component<Props> {
     return data;
   }
 
-  render() {
-    const plotProps = {};
-
-    plotProps.layout = {
+  getLayout() {
+    return {
       barmode: 'stack',
       hovermode: 'closest',
       xaxis: {
@@ -109,18 +107,21 @@ class OncoPrint extends React.Component<Props> {
         zeroline: false,
       },
     };
+  }
 
-    plotProps.data = this.getPlotData();
-
+  render() {
+    const otherProps = {};
     if (this.props.fullWidth) {
-      plotProps.style = {
+      otherProps.style = {
         width: '100%',
         height: '100%',
       };
-      plotProps.useResizeHandler = true;
+      otherProps.useResizeHandler = true;
     }
 
-    return <Plot {...plotProps} />;
+    return (
+      <Plot data={this.getData()} layout={this.getLayout()} {...otherProps} />
+    );
   }
 }
 
