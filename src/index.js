@@ -3,11 +3,12 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 import {
-  getColor,
   aggregate,
-  isMutation,
-  getGeneNames,
+  getColor,
   getDisplayName,
+  getGeneNames,
+  getSamples,
+  isMutation,
   uniqueGenes,
 } from './utils';
 import type { AggregatedEntries, Entry, Entries } from './types';
@@ -27,9 +28,11 @@ class OncoPrint extends React.Component<Props> {
   render() {
     const padding = 0.05;
 
-    const nbEntries = this.props.data.length;
+    const inputData = this.props.data;
     const genes = uniqueGenes(this.props.data);
-    const entries = aggregate(this.props.data);
+    const nbEntries = inputData.length;
+    const entries = aggregate(inputData);
+    const samples = getSamples(inputData);
 
     let base = 0;
     const bBackground = [];
@@ -37,9 +40,9 @@ class OncoPrint extends React.Component<Props> {
     const xBackground = [];
     const yBackground = [];
 
-    this.props.data.forEach((e: Entry) => {
+    samples.forEach((s: string) => {
       bBackground.push(...Array(genes.length).fill(base++));
-      tBackground.push(...Array(genes.length).fill(e.sample));
+      tBackground.push(...Array(genes.length).fill(s));
       xBackground.push(...Array(genes.length).fill(1));
       yBackground.push(...genes);
     });
@@ -59,15 +62,14 @@ class OncoPrint extends React.Component<Props> {
     };
 
     const data = [background];
-    const shapes = [];
 
     Object.keys(entries).forEach((key: string, index: number) => {
       const aggr = entries[key];
-      const width = aggr.type === 'CNA' ? 0.8 : 0.4;
+      const width = aggr.type === 'CNA' ? 0.8 : aggr.type === 'EXP' ? 0.6 : 0.4;
 
       // where to draw a bar for this entry
       const indexes = aggr.entries.map((e) => e.sample).map((s) => {
-        return this.props.data.findIndex((e) => e.sample === s);
+        return samples.findIndex((sample) => sample === s);
       });
 
       data.push({
@@ -101,7 +103,6 @@ class OncoPrint extends React.Component<Props> {
         showgrid: false,
         zeroline: false,
       },
-      shapes,
     };
 
     props.data = data;
