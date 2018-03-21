@@ -6,6 +6,11 @@
 Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https://travis-ci.org/plotly/react-oncoprint)
 
 
+## The big picture
+
+![](./.github/react-oncoprint.gif)
+
+
 ## Getting started
 
 ### Installation
