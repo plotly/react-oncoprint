@@ -52,6 +52,8 @@
   "scripts": {
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
+    "dev": "yarn storybook",
+    "flow": "flow",
     "lint": "eslint src stories tests",
     "storybook": "start-storybook -p 6006",
     "test": "jest"
