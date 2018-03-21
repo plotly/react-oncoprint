@@ -19,7 +19,7 @@ type Props = {|
   sampleColor: string,
 |};
 
-class OncoPrint extends React.Component<Props> {
+class OncoPrint extends React.PureComponent<Props> {
   static defaultProps = {
     fullWidth: false,
     padding: 0.05,
