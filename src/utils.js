@@ -7,11 +7,13 @@ import type {
   Event,
   Events,
   SamplesMap,
+  SupportedEvents as SupportedEventsType,
+  OrdersMap,
 } from './types';
 
 const MutationEventTypes = ['INFRAME', 'TRUNC', 'MISSENSE'];
 
-const SupportedEvents = {
+export const SupportedEvents: SupportedEventsType = {
   // Mutations
   MISSENSE: {
     colorHTML: '#008000',
@@ -59,7 +61,7 @@ const SupportedEvents = {
 };
 
 // Describes the order of importance for CNA events.
-const AlterationsOrder = {
+const AlterationsOrder: OrdersMap = {
   AMP: 0,
   GAIN: 2,
   HETLOSS: 3,
@@ -68,7 +70,7 @@ const AlterationsOrder = {
 };
 
 // Describes the order of importance for mutation events.
-const MutationsOrder = {
+const MutationsOrder: OrdersMap = {
   INFRAME: 1,
   MISSENSE: 3,
   TRUNC: 0,
@@ -76,7 +78,7 @@ const MutationsOrder = {
 };
 
 // Describes the order of importance for mRNA expression events.
-const ExpressionsOrder = {
+const ExpressionsOrder: OrdersMap = {
   UP: 0,
   DOWN: 1,
   undefined: 2,
@@ -112,7 +114,7 @@ const samplesComparator = (
   genes: Array<string>,
   samplesToIndex: { [string]: number },
   perGeneComparators: Array<PrecomputedComparator>,
-): Comparator => (s1, s2) => {
+): Comparator => (s1: string, s2: string) => {
   let result = 0;
   let absoluteResult = 0;
 
@@ -171,13 +173,10 @@ const sortEventsForGene = (
   return 0;
 };
 
-// Returns the list of samples sorted with mutual exclusion. The sorting
-// algorithm is similar to the one used on cBioPortal and takes both the rows
-// (genes) and columns (samples) into account. We returns the sorted set of
-// samples to display on X axix.
-export const getSortedSamples = (events: Events): Array<string> => {
-  // build a map to gather information on each sample, per gene, per event.
+// Returns a map to gather information on each sample, per gene, per event.
+export const createSamplesMap = (events: Events): SamplesMap => {
   const samplesMap: SamplesMap = {};
+
   events.forEach((e: Event) => {
     const s = samplesMap[e.sample] || {};
     const v = s[e.gene] || {};
@@ -194,12 +193,22 @@ export const getSortedSamples = (events: Events): Array<string> => {
     };
   });
 
-  // Helper function to create a comparator for each gene.
-  const createSortEventsForGeneComparator = (gene, map): Comparator => (
-    s1,
-    s2,
-  ) => sortEventsForGene(s1, s2, gene, map);
+  return samplesMap;
+};
 
+// Helper function to create a comparator for each gene.
+export const createSortEventsForGeneComparator = (gene, map): Comparator => (
+  s1: string,
+  s2: string,
+) => sortEventsForGene(s1, s2, gene, map);
+
+// Returns the list of samples sorted with mutual exclusion. The sorting
+// algorithm is similar to the one used on cBioPortal and takes both the rows
+// (genes) and columns (samples) into account. We returns the sorted set of
+// samples to display on X axix.
+export const getSortedSamples = (events: Events): Array<string> => {
+  // Get a map with samples sorted by gene and events.
+  const samplesMap = createSamplesMap(events);
   // Get a unique list of genes, sorted by the natural order in the events.
   const genes = [...new Set(getGeneNames(events))];
   // Sort the samples alphabetically.
@@ -234,7 +243,7 @@ export const getSortedSamples = (events: Events): Array<string> => {
 
 // Returns the events aggregated by type (if mutation) or alteration.
 export const aggregate = (events: Events): AggregatedEvents => {
-  const out = {};
+  const out: AggregatedEvents = {};
 
   events.forEach((e: Event) => {
     if (!e.type || e.type === 'NONE') {

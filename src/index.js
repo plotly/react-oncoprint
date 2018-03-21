@@ -49,7 +49,7 @@ class OncoPrint extends React.Component<Props> {
     });
 
     const background = {
-      base: bBackground.map((i) => i + padding),
+      base: bBackground.map((i: number) => i + padding),
       hoverinfo: 'text',
       marker: {
         color: sampleColor,
@@ -58,7 +58,7 @@ class OncoPrint extends React.Component<Props> {
       text: tBackground,
       orientation: 'h',
       type: 'bar',
-      x: xBackground.map((i) => i - padding * 2),
+      x: xBackground.map((i: number) => i - padding * 2),
       y: yBackground,
     };
 
@@ -90,7 +90,7 @@ class OncoPrint extends React.Component<Props> {
         width,
         x: Array(aggr.events.length)
           .fill(1)
-          .map((i) => i - padding * 2),
+          .map((i: number) => i - padding * 2),
         y: getGeneNames(aggr.events),
       });
     });

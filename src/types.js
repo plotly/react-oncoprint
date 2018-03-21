@@ -17,6 +17,13 @@ export type AggregatedEvents = {
   |},
 };
 
+export type SupportedEvents = {
+  [string]: {|
+    colorHTML: string,
+    displayName: string,
+  |},
+};
+
 export type ComparatorResult = -1 | 0 | 1;
 
 export type Comparator = (a: any, b: any) => ComparatorResult;
@@ -31,4 +38,8 @@ export type SamplesMap = {
       [string]: string,
     },
   },
+};
+
+export type OrdersMap = {
+  [string]: number,
 };
