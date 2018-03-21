@@ -19,23 +19,23 @@ const createNotes = (data) => {
 storiesOf('OncoPrint', module)
   .add(
     'with a few entries',
-    withNotes(createNotes(dataset1))(() => <OncoPrint data={dataset1} />)
+    withNotes(createNotes(dataset1))(() => <OncoPrint data={dataset1} />),
   )
   .add(
     'with a few more entries (full width)',
     withNotes(createNotes(dataset2))(() => (
       <OncoPrint data={dataset2} fullWidth />
-    ))
+    )),
   )
   .add(
     'with two genes and lots of truncating mutations',
     withNotes(createNotes(dataset3))(() => (
       <OncoPrint data={dataset3} fullWidth />
-    ))
+    )),
   )
   .add(
     'with cBioPortal test data (full width)',
     withNotes(createNotes(cBioPortalData))(() => (
       <OncoPrint data={cBioPortalData} fullWidth />
-    ))
+    )),
   );

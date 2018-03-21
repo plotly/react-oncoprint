@@ -1,5 +1,6 @@
-import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+/* global window */
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 // This is needed to mock the canvas as it is not mocked by JSDOM.
 import 'jest-canvas-mock';

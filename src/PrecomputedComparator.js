@@ -1,7 +1,7 @@
 /* @flow */
 import hasElementsInInterval from 'oncoprintjs/src/js/haselementsininterval';
 
-import type { Comparator, ComparatorResult } from './types';
+import type { Comparator } from './types';
 
 // PrecomputedComparator is similar to the OncoPrintJs implementation with
 // three notable changes: rewritten with Flow/ES next and as a class, the input
@@ -24,7 +24,7 @@ class PrecomputedComparator {
     this.sortedData = this.data.sort(this.comparator);
 
     this.changePoints = [];
-    for (let i = 0; i < this.sortedData.length; i++) {
+    for (let i = 0; i < this.sortedData.length; i += 1) {
       if (i === this.sortedData.length - 1) {
         break;
       }
@@ -35,7 +35,7 @@ class PrecomputedComparator {
     }
 
     this.samplesToIndex = {};
-    for (var i = 0; i < this.sortedData.length; i++) {
+    for (let i = 0; i < this.sortedData.length; i += 1) {
       this.samplesToIndex[this.sortedData[i]] = i;
     }
   }
@@ -69,7 +69,7 @@ class PrecomputedComparator {
     }
 
     if (shouldNegateResult) {
-      res = res * -1;
+      res *= -1;
     }
 
     return res;

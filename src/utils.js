@@ -83,19 +83,16 @@ const ExpressionsOrder = {
 };
 
 // Retrieves the gene names in a set of events.
-export const getGeneNames = (events: Events): Array<string> => {
-  return events.map((e) => e.gene).filter((gene) => gene !== null);
-};
+export const getGeneNames = (events: Events): Array<string> =>
+  events.map((e) => e.gene).filter((gene) => gene !== null);
 
 // Returns the set of genes (unique) reversed to display on the Y axis.
-export const getSortedGenes = (events: Events): Array<string> => {
-  return [...new Set(getGeneNames(events))].reverse();
-};
+export const getSortedGenes = (events: Events): Array<string> =>
+  [...new Set(getGeneNames(events))].reverse();
 
 // Returns true if an event is a mutation, false otherwise.
-export const isMutation = (event: Event): boolean => {
-  return MutationEventTypes.includes(event.type);
-};
+export const isMutation = (event: Event): boolean =>
+  MutationEventTypes.includes(event.type);
 
 // Returns a comparator result value given an integer that may not be -1, 0 or
 // 1 (which are the only allowed sorting return values).
@@ -114,12 +111,12 @@ const sign = (x: number): ComparatorResult => {
 const samplesComparator = (
   genes: Array<string>,
   samplesToIndex: { [string]: number },
-  perGeneComparators: Array<PrecomputedComparator>
+  perGeneComparators: Array<PrecomputedComparator>,
 ): Comparator => (s1, s2) => {
   let result = 0;
   let absoluteResult = 0;
 
-  for (let i = 0; i < genes.length; i++) {
+  for (let i = 0; i < genes.length; i += 1) {
     const nextResult = perGeneComparators[i].compare(s1, s2);
     const nextAbsoluteResult = Math.abs(nextResult);
 
@@ -145,7 +142,7 @@ const sortEventsForGene = (
   s1: string,
   s2: string,
   gene: string,
-  samplesMap: SamplesMap
+  samplesMap: SamplesMap,
 ): ComparatorResult => {
   const d1 = samplesMap[s1][gene] || {};
   const d2 = samplesMap[s2][gene] || {};
@@ -186,7 +183,7 @@ export const getSortedSamples = (events: Events): Array<string> => {
     const v = s[e.gene] || {};
 
     if (isMutation(e)) {
-      v['MUT'] = e.type;
+      v.MUT = e.type;
     } else {
       v[e.type] = e.alteration;
     }
@@ -198,9 +195,10 @@ export const getSortedSamples = (events: Events): Array<string> => {
   });
 
   // Helper function to create a comparator for each gene.
-  const createSortEventsForGeneComparator = (gene, map): Comparator => {
-    return (s1, s2) => sortEventsForGene(s1, s2, gene, map);
-  };
+  const createSortEventsForGeneComparator = (gene, map): Comparator => (
+    s1,
+    s2,
+  ) => sortEventsForGene(s1, s2, gene, map);
 
   // Get a unique list of genes, sorted by the natural order in the events.
   const genes = [...new Set(getGeneNames(events))];
@@ -214,8 +212,8 @@ export const getSortedSamples = (events: Events): Array<string> => {
       // This actually sorts the samples, but for each gene only.
       new PrecomputedComparator(
         [...samples],
-        createSortEventsForGeneComparator(gene, samplesMap)
-      )
+        createSortEventsForGeneComparator(gene, samplesMap),
+      ),
     );
   });
 
@@ -228,7 +226,7 @@ export const getSortedSamples = (events: Events): Array<string> => {
   // Finally, sort the samples taking into account both the columns and rows.
   const sortedSamples = [...samples];
   sortedSamples.sort(
-    samplesComparator(genes, samplesToIndex, perGeneComparators)
+    samplesComparator(genes, samplesToIndex, perGeneComparators),
   );
 
   return sortedSamples;

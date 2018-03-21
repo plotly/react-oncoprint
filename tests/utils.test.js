@@ -20,18 +20,11 @@ describe('utils', () => {
     it('returns a list of gene names', () => {
       const eventsByType = utils.aggregate(dataset1);
 
-      expect(Object.keys(eventsByType)).toEqual([
-        'FUSION',
-        'HOMDEL',
-        'AMP',
-      ]);
-      expect(eventsByType['FUSION']).toEqual({
+      expect(Object.keys(eventsByType)).toEqual(['FUSION', 'HOMDEL', 'AMP']);
+      expect(eventsByType.FUSION).toEqual({
         alteration: 'FUSION',
         type: 'FUSION',
-        events: [
-          dataset1[0],
-          dataset1[1],
-        ],
+        events: [dataset1[0], dataset1[1]],
       });
     });
   });

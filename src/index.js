@@ -9,9 +9,8 @@ import {
   getGeneNames,
   getSortedGenes,
   getSortedSamples,
-  isMutation,
 } from './utils';
-import type { AggregatedEvents, Event, Events } from './types';
+import type { Events } from './types';
 
 type Props = {|
   data: Events,
@@ -42,10 +41,11 @@ class OncoPrint extends React.Component<Props> {
 
     // Background is used to draw the matrix (genes * samples)
     samples.forEach((s: string) => {
-      bBackground.push(...Array(genes.length).fill(base++));
+      bBackground.push(...Array(genes.length).fill(base));
       tBackground.push(...Array(genes.length).fill(s));
       xBackground.push(...Array(genes.length).fill(1));
       yBackground.push(...genes);
+      base += 1;
     });
 
     const background = {
@@ -63,14 +63,20 @@ class OncoPrint extends React.Component<Props> {
     };
 
     const data = [background];
-    Object.keys(events).forEach((key: string, index: number) => {
+    Object.keys(events).forEach((key: string) => {
       const aggr = events[key];
-      const width = aggr.type === 'CNA' ? 0.8 : aggr.type === 'EXP' ? 0.6 : 0.4;
+
+      let width = 0.4;
+      if (aggr.type === 'CNA') {
+        width = 0.8;
+      } else if (aggr.type === 'EXP') {
+        width = 0.6;
+      }
 
       // where to draw a bar for this entry
-      const indexes = aggr.events.map((e) => e.sample).map((s) => {
-        return samples.findIndex((sample) => sample === s);
-      });
+      const indexes = aggr.events
+        .map((e) => e.sample)
+        .map((s) => samples.findIndex((sample) => sample === s));
 
       data.push({
         base: indexes.map((i) => i + padding),
@@ -92,6 +98,7 @@ class OncoPrint extends React.Component<Props> {
     return data;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getLayout() {
     return {
       barmode: 'stack',

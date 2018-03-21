@@ -1,0 +1,42 @@
+{
+    "extends": [
+        "airbnb",
+        "plugin:flowtype/recommended",
+        "plugin:jest/recommended",
+        "plugin:react/recommended",
+        "prettier",
+        "prettier/flowtype",
+        "prettier/react"
+    ],
+    "plugins": [
+        "flowtype",
+        "react",
+        "prettier"
+    ],
+    "rules": {
+        "import/no-extraneous-dependencies": [
+            "error", {
+                "devDependencies": [
+                    "**/*.test.js",
+                    "stories/*.js",
+                    "tests/setupTests.js"
+                ]
+            }
+        ],
+        "prettier/prettier": [
+            "error", {
+                "singleQuote": true,
+                "arrowParens": "always",
+                "trailingComma": "all"
+            }
+        ],
+        "react/jsx-filename-extension": [
+            "error", {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ]
+    }
+}
