@@ -17,6 +17,7 @@
   "devDependencies": {
     "@storybook/addon-links": "^3.3.15",
     "@storybook/addon-notes": "^3.3.15",
+    "@storybook/addons": "^3.3.15",
     "@storybook/react": "^3.3.15",
     "@storybook/storybook-deployer": "^2.3.0",
     "array-to-table": "^1.0.1",
@@ -40,7 +41,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.4.0",
-    "flow-bin": "^0.67.1",
+    "flow-bin": "^0.68.0",
     "html-tablify": "^2.0.2",
     "jest": "^22.4.2",
     "jest-canvas-mock": "^1.0.2",

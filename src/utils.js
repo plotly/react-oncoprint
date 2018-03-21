@@ -197,10 +197,11 @@ export const createSamplesMap = (events: Events): SamplesMap => {
 };
 
 // Helper function to create a comparator for each gene.
-export const createSortEventsForGeneComparator = (gene, map): Comparator => (
-  s1: string,
-  s2: string,
-) => sortEventsForGene(s1, s2, gene, map);
+export const createSortEventsForGeneComparator = (
+  gene: string,
+  map: SamplesMap,
+): Comparator => (s1: string, s2: string) =>
+  sortEventsForGene(s1, s2, gene, map);
 
 // Returns the list of samples sorted with mutual exclusion. The sorting
 // algorithm is similar to the one used on cBioPortal and takes both the rows
