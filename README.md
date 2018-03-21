@@ -2,6 +2,10 @@
 
 > A React component to create OncoPrint charts.
 
+[![Build
+Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https://travis-ci.org/plotly/react-oncoprint)
+
+
 ## Getting started
 
 ### Installation
