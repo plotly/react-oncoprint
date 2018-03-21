@@ -69,7 +69,7 @@ class App extends React.Component {
 Get the code:
 
 ```
-$ git clone https://github.com/plotly/react-plotly.js
+$ git clone https://github.com/plotly/react-oncoprint
 ```
 
 Install the project `dev` dependencies:
