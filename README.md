@@ -15,9 +15,6 @@ Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https:/
 
 ### Installation
 
-:warning: this library has not been published on the NPM registry yet, therefore
-it cannot be installed _via_ `npm` or `yarn`.
-
 For [yarn](https://yarnpkg.com/en/) users, run:
 
 ```
@@ -143,7 +140,17 @@ $ yarn deploy-storybook
 
 ### Build and releases
 
-// TODO
+To build the production version of this library, run the command below, which
+will create a `dist/` folder containing the required files:
+
+```
+$ yarn build
+```
+
+In order to release a new version, you can push a git tag and Travis-CI will
+automatically publish a npm release at:
+https://www.npmjs.com/package/react-oncoprint. There is no need to run `yarn
+build` by yourself See the [`.travis.yml`](.travis.yml) for further information.
 
 
 ## Contributing

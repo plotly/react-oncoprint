@@ -51,6 +51,7 @@
     "react-test-renderer": "^16.2.0"
   },
   "scripts": {
+    "build": "rm -rf build/ && babel src -d dist/ && cp README.md package.json LICENSE dist/",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
     "dev": "yarn storybook",
