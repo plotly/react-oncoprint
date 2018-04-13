@@ -6,6 +6,7 @@ import {
   aggregate,
   getColor,
   getDisplayName,
+  getEventRatiosPerGene,
   getGeneNames,
   getSortedGenes,
   getSortedSamples,
@@ -33,6 +34,10 @@ class OncoPrint extends React.PureComponent<Props> {
     const genes = getSortedGenes(inputData);
     const samples = getSortedSamples(inputData);
 
+    const ratios = getEventRatiosPerGene(inputData, samples.length);
+    const formatGenes = (list: Array<string>): Array<string> =>
+      list.map((gene) => `${gene} (${ratios[gene]}%)`);
+
     let base = 0;
     const bBackground = [];
     const tBackground = [];
@@ -44,7 +49,7 @@ class OncoPrint extends React.PureComponent<Props> {
       bBackground.push(...Array(genes.length).fill(base));
       tBackground.push(...Array(genes.length).fill(s));
       xBackground.push(...Array(genes.length).fill(1));
-      yBackground.push(...genes);
+      yBackground.push(...formatGenes(genes));
       base += 1;
     });
 
@@ -91,7 +96,7 @@ class OncoPrint extends React.PureComponent<Props> {
         x: Array(aggr.events.length)
           .fill(1)
           .map((i: number) => i - padding * 2),
-        y: getGeneNames(aggr.events),
+        y: formatGenes(getGeneNames(aggr.events)),
       });
     });
 

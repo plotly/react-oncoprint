@@ -11,6 +11,8 @@ import type {
   OrdersMap,
 } from './types';
 
+type HashMap = { [string]: number };
+
 const MutationEventTypes = ['INFRAME', 'TRUNC', 'MISSENSE'];
 
 export const SupportedEvents: SupportedEventsType = {
@@ -91,6 +93,30 @@ export const getGeneNames = (events: Events): Array<string> =>
 // Returns the set of genes (unique) reversed to display on the Y axis.
 export const getSortedGenes = (events: Events): Array<string> =>
   [...new Set(getGeneNames(events))].reverse();
+
+// Returns a hash map with the percentage of events (value) per gene (key).
+export const getEventRatiosPerGene = (
+  events: Events,
+  nbSamples: number,
+): HashMap => {
+  const map = events.reduce((acc: HashMap, event: Event) => {
+    if (event.type) {
+      if (acc[event.gene]) {
+        acc[event.gene] += 1;
+      } else {
+        acc[event.gene] = 1;
+      }
+    }
+
+    return acc;
+  }, {});
+
+  Object.keys(map).forEach((gene: string) => {
+    map[gene] = Math.floor(map[gene] / nbSamples * 100);
+  });
+
+  return map;
+};
 
 // Returns true if an event is a mutation, false otherwise.
 export const isMutation = (event: Event): boolean =>

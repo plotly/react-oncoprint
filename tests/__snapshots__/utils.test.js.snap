@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`utils getEventRatiosPerGene() returns the number of events per gene 1`] = `
+Object {
+  "BRCA1": 11,
+  "PTEN": 66,
+  "TP53": 33,
+}
+`;
+
 exports[`utils getSortedSamples() returns a sorted set of samples 1`] = `
 Array [
   "TCGA-25-2392-01",

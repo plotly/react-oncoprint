@@ -119,4 +119,15 @@ describe('utils', () => {
       expect(color).toEqual(utils.SupportedEvents.MISSENSE.colorHTML);
     });
   });
+
+  describe('getEventRatiosPerGene()', () => {
+    it('returns the number of events per gene', () => {
+      const sortedSamples1 = utils.getSortedSamples(dataset1);
+      const eventsPerGene = utils.getEventRatiosPerGene(
+        dataset1,
+        sortedSamples1.length,
+      );
+      expect(eventsPerGene).toMatchSnapshot();
+    });
+  });
 });
