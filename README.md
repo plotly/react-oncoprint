@@ -2,4 +2,7 @@
 
 OncoPrint plots for Dash
 
-TODO
+TODO:
+
+Add crossfiltering
+Remove babel stage-2 dependency
