@@ -1,0 +1,4 @@
+include dash_oncoprint/bundle.js
+include dash_oncoprint/metadata.json
+include dash_oncoprint/package.json
+include README.md

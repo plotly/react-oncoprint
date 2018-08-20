@@ -1,0 +1,68 @@
+{
+  "src/lib/components/OncoPrint.react.js": {
+    "description": "",
+    "displayName": "OncoPrint",
+    "methods": [
+      {
+        "name": "defaultProps",
+        "docblock": null,
+        "modifiers": [
+          "static"
+        ],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "getData",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "getLayout",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "data": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        },
+        "required": false
+      },
+      "padding": {
+        "defaultValue": {
+          "value": "0.05",
+          "computed": false
+        },
+        "required": false
+      },
+      "sampleColor": {
+        "defaultValue": {
+          "value": "'rgb(190, 190, 190)'",
+          "computed": false
+        },
+        "required": false
+      }
+    }
+  }
+}
