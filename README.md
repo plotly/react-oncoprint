@@ -20,9 +20,12 @@ $ yarn start
 
 1. Build development bundle to `src/lib/` and watch for changes
 
-    # Once this is started, you can just leave it running.
+    ```sh
     $ yarn start
+    ```
 
 2. Run the Dash demo
 
+    ```sh
     $ python usage.py
+    ```
