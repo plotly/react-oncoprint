@@ -192,6 +192,7 @@ export const createSamplesMap = (events) => {
     const samplesMap = {};
 
     events.forEach((e) => {
+
         const s = samplesMap[e.sample] || {};
         const v = s[e.gene] || {};
 
@@ -201,10 +202,11 @@ export const createSamplesMap = (events) => {
             v[e.type] = e.alteration;
         }
 
-        samplesMap[e.sample] = {
-            ...samplesMap[e.sample],
-            [e.gene]: v
-        };
+        samplesMap[e.sample] = Object.assign(
+            {},
+            samplesMap[e.sample],
+            { [e.gene]: v }
+        );
     });
 
     return samplesMap;

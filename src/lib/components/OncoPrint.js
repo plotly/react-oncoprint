@@ -70,9 +70,6 @@ export default class OncoPrint extends PureComponent {
         Object.keys(events).forEach((key) => {
             const aggr = events[key];
 
-            console.log("test")
-            console.log(aggr)
-
             // Resize width depending on the mutation type
             let width = 0.4;
             if (aggr.type === 'CNA') {
