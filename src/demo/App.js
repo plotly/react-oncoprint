@@ -12,7 +12,7 @@ export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'dataset1'
+            value: 'dataset3'
         }
         this.setProps = this.setProps.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -55,7 +55,7 @@ export default class App extends Component {
                     <p>
                         Selected file: {`${value}.js`}
                     </p>
-                    <select value={value} onChange={this.handleChange}>
+                    <select value={value} onChange={this.handleChange} style={{width: '100%'}}>
                         <option value="dataset1">Small dataset</option>
                         <option value="dataset2">Medium dataset</option>
                         <option value="dataset3">Large dataset</option>
@@ -64,7 +64,6 @@ export default class App extends Component {
                 </div>
                 <OncoPrint
                     data = {datasets[value]}
-                    fullWidth
                 />
             </div>
         );
