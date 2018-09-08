@@ -1,10 +1,18 @@
-import React, {Component} from 'react';
-import {OncoPrint} from '../lib';
+import React, { Component } from 'react';
+import { OncoPrint } from '../lib';
 
-import dataset1 from './data/dataset-1';
-import dataset2 from './data/dataset-2';
-import dataset3 from './data/dataset-3';
-import cBioPortalData from './data/cbioportal-data';
+import dataset1 from '../../data/dataset1.json';
+import dataset2 from '../../data/dataset2.json';
+import dataset3 from '../../data/dataset3.json';
+import cBioPortalData from '../../data/cBioPortalData.json';
+
+
+const DATA = {
+    dataset1,
+    dataset2,
+    dataset3,
+    cBioPortalData
+};
 
 
 export default class App extends Component {
@@ -28,13 +36,6 @@ export default class App extends Component {
 
     render() {
         const { value } = this.state;
-
-        const datasets = {
-            dataset1,
-            dataset2,
-            dataset3,
-            cBioPortalData
-        };
 
         return (
             <div
@@ -63,7 +64,7 @@ export default class App extends Component {
                     </select>
                 </div>
                 <OncoPrint
-                    data = {datasets[value]}
+                    data = {DATA[value]}
                 />
             </div>
         );

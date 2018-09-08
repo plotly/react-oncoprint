@@ -16,13 +16,13 @@ import {
 
 export default class OncoPrint extends PureComponent {
 
-    // ES6 style syntax
+    // Default props
     static get defaultProps() {
         return {
             fullWidth: true,
             padding: 0.05,
             sampleColor: 'rgb(190, 190, 190)'
-        }
+        };
     }
 
     // Fetch data
@@ -111,7 +111,7 @@ export default class OncoPrint extends PureComponent {
 
     // Fetch layout
     getLayout() {
-        let layout = {
+        const layout = {
             barmode: 'stack',
             hovermode: 'closest',
             xaxis: {
@@ -129,23 +129,26 @@ export default class OncoPrint extends PureComponent {
         return layout;
     }
 
-    // React render
+    // Main
     render() {
 
-        const { id, fullWidth } = this.props;
-        const otherProps = {};
+        const { id } = this.props;
 
-        if (fullWidth) {
-            otherProps.style = {
+        const otherProps = {
+            style: {
                 width: '100%',
                 height: '100%'
-            };
-            otherProps.useResizeHandler = true;
-        }
+            },
+            useResizeHandler: true
+        };
 
         return (
             <div id={id}>
-                <Plot data={this.getData()} layout={this.getLayout()} {...otherProps} />
+                <Plot
+                    data={this.getData()}
+                    layout={this.getLayout()}
+                    {...otherProps}
+                />
             </div>
         );
     }
