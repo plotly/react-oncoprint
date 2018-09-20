@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Plot from 'react-plotly.js';
 
-
 import {
     aggregate,
     getColor,
@@ -16,7 +15,7 @@ import {
 
 export default class OncoPrint extends PureComponent {
 
-    // Default props
+    // Load default props
     static get defaultProps() {
         return {
             fullWidth: true,
@@ -24,6 +23,53 @@ export default class OncoPrint extends PureComponent {
             sampleColor: 'rgb(190, 190, 190)'
         };
     }
+
+    // Constructor
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    // Handle plot events
+    handleChange(event) {
+
+        console.log('test');
+
+        if (!this.props.onChange) {
+            return;
+        }
+        if (event.points) {
+            this.props.onChange({
+                eventType: 'Click',
+                curveNumber: event.points[0].curveNumber,
+                x: event.points[0].x,
+                y: event.points[0].y
+            });
+        }
+        else if (event['xaxis.range[0]'] || event['xaxis.range']) {
+            this.setState({
+                xStart: event['xaxis.range[0]'] || event['xaxis.range'][0],
+                xEnd: event['xaxis.range[1]'] || event['xaxis.range'][1]
+            });
+            this.props.onChange({
+                eventType: 'Zoom',
+                xStart: event['xaxis.range[0]'] || event['xaxis.range'][0],
+                xEnd: event['xaxis.range[1]'] || event['xaxis.range'][1]
+            });
+        }
+        else if (event['xaxis.autorange'] === true) {
+            this.setState({
+                xStart: null,
+                xEnd: null
+            });
+            this.props.onChange({
+                    eventType: 'Autoscale',
+            });
+        }
+        else {
+            this.props.onChange(event);
+        }
+    };
 
     // Fetch data
     getData() {
@@ -131,9 +177,7 @@ export default class OncoPrint extends PureComponent {
 
     // Main
     render() {
-
         const { id } = this.props;
-
         const otherProps = {
             style: {
                 width: '100%',
@@ -142,11 +186,16 @@ export default class OncoPrint extends PureComponent {
             useResizeHandler: true
         };
 
+        const data = this.getData();
+        const layout = this.getLayout();;
+
         return (
             <div id={id}>
                 <Plot
-                    data={this.getData()}
-                    layout={this.getLayout()}
+                    data={data}
+                    layout={layout}
+                    onClick={this.handleChange}
+                    onRelayout={this.handleChange}
                     {...otherProps}
                 />
             </div>
