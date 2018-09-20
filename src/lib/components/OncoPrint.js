@@ -237,16 +237,7 @@ OncoPrint.propTypes = {
     // Dash CSS ID
     id: PropTypes.string,
 
-    // TODO annotate the rest
+    // OncoPrint data as a list
     data: PropTypes.array
 
-    x: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array
-    ]),
-
-    y: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array
-    ]),
 };
