@@ -33,19 +33,32 @@ export default class OncoPrint extends PureComponent {
     // Handle plot events
     handleChange(event) {
 
-        console.log('test');
-
+        // Guard
         if (!this.props.onChange) {
             return;
         }
+        // CLick (mousedown) or hover (mousemove)
         if (event.points) {
+
+            let eventType;
+            if (event.event.type === "mousedown") {
+                eventType = 'Click';
+            }
+            else if (event.event.type === "mousemove") {
+                eventType = 'Hover';
+            }
+            else {
+                eventType = 'Other';
+            }
+
             this.props.onChange({
-                eventType: 'Click',
+                eventType: eventType,
                 curveNumber: event.points[0].curveNumber,
                 x: event.points[0].x,
                 y: event.points[0].y
             });
         }
+        // Zoom
         else if (event['xaxis.range[0]'] || event['xaxis.range']) {
             this.setState({
                 xStart: event['xaxis.range[0]'] || event['xaxis.range'][0],
@@ -57,15 +70,17 @@ export default class OncoPrint extends PureComponent {
                 xEnd: event['xaxis.range[1]'] || event['xaxis.range'][1]
             });
         }
+        // Autozoom
         else if (event['xaxis.autorange'] === true) {
             this.setState({
                 xStart: null,
                 xEnd: null
             });
             this.props.onChange({
-                    eventType: 'Autoscale',
+                eventType: 'Autoscale',
             });
         }
+        // Guard
         else {
             this.props.onChange(event);
         }
@@ -195,6 +210,7 @@ export default class OncoPrint extends PureComponent {
                     data={data}
                     layout={layout}
                     onClick={this.handleChange}
+                    onHover={this.handleChange}
                     onRelayout={this.handleChange}
                     {...otherProps}
                 />
