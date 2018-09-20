@@ -27,6 +27,10 @@ export default class OncoPrint extends PureComponent {
     // Constructor
     constructor(props) {
         super(props);
+        this.state = {
+            xStart: null,
+            xEnd: null
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -88,13 +92,18 @@ export default class OncoPrint extends PureComponent {
 
     // Fetch data
     getData() {
-        const { data: inputData, padding, sampleColor } = this.props;
+        const {
+            data: inputData,
+            padding,
+            sampleColor
+         } = this.props;
 
+        // OncoPrint equivalent of x, y
         const events = aggregate(inputData);
         const genes = getSortedGenes(inputData);
         const samples = getSortedSamples(inputData);
-
         const ratios = getEventRatiosPerGene(inputData, samples.length);
+
         const formatGenes = (list) =>
             list.map((gene) => `${gene} (${ratios[gene]}%)`);
 
@@ -172,13 +181,16 @@ export default class OncoPrint extends PureComponent {
 
     // Fetch layout
     getLayout() {
+        const { xStart, xEnd } = this.state;
         const layout = {
             barmode: 'stack',
             hovermode: 'closest',
             xaxis: {
                 showgrid: false,
                 showticklabels: false,
-                zeroline: false
+                zeroline: false,
+                autorange: Boolean(!xStart),
+                range: [xStart, xEnd]
             },
             yaxis: {
                 fixedrange: true,
@@ -225,7 +237,16 @@ OncoPrint.propTypes = {
     // Dash CSS ID
     id: PropTypes.string,
 
-    // Dash oncoprint property
+    // TODO annotate the rest
     data: PropTypes.array
 
+    x: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
+
+    y: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+    ]),
 };
