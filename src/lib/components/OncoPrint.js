@@ -37,6 +37,8 @@ export default class OncoPrint extends PureComponent {
     // Handle plot events
     handleChange(event) {
 
+        console.log(event);
+
         // Guard
         if (!this.props.onChange) {
             return;
@@ -57,9 +59,11 @@ export default class OncoPrint extends PureComponent {
 
             this.props.onChange({
                 eventType: eventType,
-                curveNumber: event.points[0].curveNumber,
+                name: event.points[0].data.name,
+                text: event.points[0].text,
+                // curveNumber: event.points[0].curveNumber
                 x: event.points[0].x,
-                y: event.points[0].y
+                y: event.points[0].y,
             });
         }
         // Zoom
@@ -181,11 +185,14 @@ export default class OncoPrint extends PureComponent {
 
     // Fetch layout
     getLayout() {
+        const { xlabel, ylabel } = this.props;
         const { xStart, xEnd } = this.state;
+
         const layout = {
             barmode: 'stack',
             hovermode: 'closest',
             xaxis: {
+                title: xlabel,
                 showgrid: false,
                 showticklabels: false,
                 zeroline: false,
@@ -193,9 +200,10 @@ export default class OncoPrint extends PureComponent {
                 range: [xStart, xEnd]
             },
             yaxis: {
-                fixedrange: true,
+                title: xlabel,
                 showgrid: false,
-                zeroline: false
+                zeroline: false,
+                fixedrange: true
             }
         };
 
@@ -238,6 +246,14 @@ OncoPrint.propTypes = {
     id: PropTypes.string,
 
     // OncoPrint data as a list
-    data: PropTypes.array
+    data: PropTypes.array,
 
+    // TODO add support for named variables (x, y, etc.)
+    // either as list or as string that maps on data
+
+    // Title of the x-axis
+    xlabel: PropTypes.string,
+
+    // Title of the y-axis
+    ylabel: PropTypes.string,
 };
