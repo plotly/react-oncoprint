@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { OncoPrint } from '../lib';
 
-import dataset1 from '../../data/dataset1.json';
-import dataset2 from '../../data/dataset2.json';
-import dataset3 from '../../data/dataset3.json';
-import cBioPortalData from '../../data/cBioPortalData.json';
+import dataset1 from './data/dataset1.json';
+import dataset2 from './data/dataset2.json';
+import dataset3 from './data/dataset3.json';
+import cBioPortalData from './data/cBioPortalData.json';
 
 
 const DATA = {
