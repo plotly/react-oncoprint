@@ -6,6 +6,7 @@
 # production
 /build
 /demo
+/lib
 
 # testing
 /coverage
@@ -29,7 +30,7 @@ venv
 *.pyc
 
 # builds
-dash_oncoprint.egg-info
+dash_alignment_viewer.egg-info
 dist
 *__pycache__*
 __pycache__/
