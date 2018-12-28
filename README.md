@@ -1,10 +1,10 @@
-# Dash OncoPrint
+# React OncoPrint
 
-OncoPrint charts in Dash
+OncoPrint charts in React
 
-## Dash
+![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_1.png)
 
-Go to this link to learn about [Dash](https://plot.ly/products/dash/).
+![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_2.png)
 
 ## Getting started
 
@@ -15,17 +15,3 @@ $ yarn
 # Watch source for changes and build to `src/lib/`
 $ yarn start
 ```
-
-### Testing your components in Dash
-
-1. Build development bundle to `src/lib/` and watch for changes
-
-    ```sh
-    $ yarn start
-    ```
-
-2. Run the Dash demo
-
-    ```sh
-    $ python usage.py
-    ```
