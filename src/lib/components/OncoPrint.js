@@ -289,7 +289,8 @@ export default class OncoPrint extends PureComponent {
 OncoPrint.propTypes = {
 
     /**
-     * Input data, either in FASTA or Clustal format.
+     * Input data, in CBioPortal format where each list entry is a dict
+     * consisting of 'sample', 'gene', 'alteration', and 'type'
      */
     data: PropTypes.array,
 
