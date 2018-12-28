@@ -2,7 +2,8 @@
   "presets": [
     "env",
     "react",
-    "flow"
+    "flow",
+    "stage-2"
   ],
   "plugins": [
     "transform-class-properties",

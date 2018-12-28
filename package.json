@@ -1,70 +1,49 @@
 {
   "name": "react-oncoprint",
-  "version": "1.0.0",
-  "description": "A React component to create OncoPrint charts.",
-  "main": "index.js",
-  "author": "Plotly, Inc",
-  "license": "MIT",
-  "peerDependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+  "main": "lib/index.js",
+  "version": "0.0.1",
+  "description": "react-oncoprint",
+  "scripts": {
+    "start": "webpack-serve ./webpack.serve.config.js --open",
+    "build-dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib"
   },
+  "author": "Jack Luo",
+  "license": "MIT",
   "dependencies": {
-    "oncoprintjs": "^1.0.87",
-    "plotly.js": "^1.35.2",
-    "react-plotly.js": "^1.7.0"
+    "lodash": "^4.17.11",
+    "plotly.js": "^1.42.5",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-plotly.js": "^2.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-links": "^3.3.15",
-    "@storybook/addon-notes": "^3.3.15",
-    "@storybook/addons": "^3.3.15",
-    "@storybook/react": "^3.3.15",
-    "@storybook/storybook-deployer": "^2.3.0",
-    "array-to-table": "^1.0.1",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-jest": "^22.4.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^16.1.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-flowtype": "^2.46.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jest": "^21.15.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.4.0",
-    "flow-bin": "^0.68.0",
-    "html-tablify": "^2.0.2",
-    "jest": "^22.4.2",
-    "jest-canvas-mock": "^1.0.2",
-    "prettier": "^1.11.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-test-renderer": "^16.2.0"
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.9.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-serve": "^1.0.2"
   },
-  "scripts": {
-    "build": "rm -rf build/ && babel src -d dist/ && cp README.md package.json LICENSE dist/",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages",
-    "dev": "yarn storybook",
-    "flow": "flow",
-    "lint": "eslint src stories tests",
-    "storybook": "start-storybook -p 6006",
-    "test": "jest"
+  "peerDependencies": {
+    "react": ">=0.14",
+    "react-dom": ">=0.14"
   },
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/tests/fixtures/"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tests/setupTests.js"
+  "engines": {
+    "node": ">=8.11.0",
+    "npm": ">=6.1.0"
   }
 }

@@ -1,9 +1,26 @@
-# react-oncoprint
+# React OncoPrint
+
+OncoPrint charts in React
 
 > A React component to create OncoPrint charts.
 
 [![Build
 Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https://travis-ci.org/plotly/react-oncoprint)
+
+![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_1.png)
+
+![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_2.png)
+
+## Getting started
+
+```sh
+# Install dependencies
+$ yarn
+
+# Watch source for changes and build to `src/lib/`
+$ yarn start
+```
+>>>>>>> dash-oncoprint/master
 
 
 ## The big picture
