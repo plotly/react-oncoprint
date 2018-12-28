@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withNotes } from '@storybook/addon-notes';
 import { tablify } from 'html-tablify';
 
-import OncoPrint from '../src';
+import OncoPrint from '../src/lib';
 import cBioPortalData from '../tests/fixtures/cbioportal-data';
 import dataset1 from '../tests/fixtures/dataset-1';
 import dataset2 from '../tests/fixtures/dataset-2';
