@@ -9,7 +9,7 @@ Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https:/
 
 ![](./assets/react_oncoprint.gif)
 
-![](./assets/picture_1.png)
+<!-- ![](./assets/picture_1.png) -->
 
 ![](./assets/picture_2.png)
 
