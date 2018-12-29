@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { OncoPrint } from '../lib';
+import { OncoPrint } from '../src';
 
 import dataset1 from './data/dataset1.json';
 import dataset2 from './data/dataset2.json';
