@@ -75,3 +75,4 @@ typings/
 # User
 /lib
 /dist
+/storybook-static
