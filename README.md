@@ -7,40 +7,30 @@ OncoPrint charts in React
 [![Build
 Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https://travis-ci.org/plotly/react-oncoprint)
 
+![](./assets/react_oncoprint.gif)
+
 ![](./assets/picture_1.png)
 
 ![](./assets/picture_2.png)
 
-## Getting started
-
-```sh
-# Install dependencies
-$ yarn
-
-# Watch source for changes and build to `src/lib/`
-$ yarn start
-```
-
-## The big picture
-
-![](./assets/react_oncoprint.gif)
-
 
 ## Getting started
+
 
 ### Installation
 
 For [yarn](https://yarnpkg.com/en/) users, run:
 
-```
+```sh
 $ yarn add react-oncoprint
 ```
 
 For [npm](https://www.npmjs.com/) users, run:
 
+```sh
+$ npm install react-oncoprint
 ```
-$ npm i --save react-oncoprint
-```
+
 
 ### Usage
 
@@ -67,7 +57,7 @@ class App extends React.Component {
     ];
 
     return (
-      <OncoPrint data={data} />
+      <OncoPrint data={data}/>
     );
   }
 }
@@ -77,7 +67,7 @@ class App extends React.Component {
 ## Development
 
 
-### Getting started
+### Testing locally
 
 Get the code:
 
@@ -88,14 +78,23 @@ $ git clone https://github.com/plotly/react-oncoprint
 Install the project `dev` dependencies:
 
 ```
-$ yarn install
+# Install dependencies
+$ yarn
+
+# Watch source for changes and build to `src/lib/`
+$ yarn start
 ```
+
+The React app demo should be available at: http://localhost:8080/.
+
+
+### Run storybook
 
 Run the development environment in a separate window (it starts
 [Storybook](https://github.com/storybooks/storybook) with a live-reload mode):
 
 ```
-$ yarn dev
+$ yarn storybook
 ```
 
 The Storybook should be available at: http://localhost:6006/.
@@ -131,7 +130,8 @@ build` by yourself See the [`.travis.yml`](.travis.yml) for further information.
 
 ## Contributing
 
-Please, see the [CONTRIBUTING](CONTRIBUTING.md) file.
+Thanks for your interest in maintaining the library!
+Please see the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 
 ## Contributor Code of Conduct

@@ -1,15 +1,10 @@
 const path = require('path');
-const packagejson = require('./package.json');
-
-const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
 module.exports = {
   entry: {main: './src/index.js'},
   output: {
-    path: path.resolve(__dirname, dashLibraryName),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    library: dashLibraryName,
-    libraryTarget: 'window',
   },
   module: {
     rules: [
