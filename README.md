@@ -7,9 +7,9 @@ OncoPrint charts in React
 [![Build
 Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https://travis-ci.org/plotly/react-oncoprint)
 
-![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_1.png)
+![](./assets/picture_1.png)
 
-![alt text](https://github.com/plotly/react-oncoprint/blob/master/assets/picture_2.png)
+![](./assets/picture_2.png)
 
 ## Getting started
 
@@ -20,12 +20,10 @@ $ yarn
 # Watch source for changes and build to `src/lib/`
 $ yarn start
 ```
->>>>>>> dash-oncoprint/master
-
 
 ## The big picture
 
-![](./.github/react-oncoprint.gif)
+![](./assets/react_oncoprint.gif)
 
 
 ## Getting started
@@ -78,6 +76,7 @@ class App extends React.Component {
 
 ## Development
 
+
 ### Getting started
 
 Get the code:
@@ -101,47 +100,6 @@ $ yarn dev
 
 The Storybook should be available at: http://localhost:6006/.
 
-### Running the test suite
-
-We use [Jest](https://facebook.github.io/jest/):
-
-```
-$ yarn test
-```
-
-You can "watch" the tests with:
-
-```
-$ yarn test --watch
-```
-
-You can get the coverage report by running:
-
-```
-$ yarn test --coverage
-```
-
-### Code formatter, linter and type checker
-
-We use [Prettier](https://prettier.io/) and [ESLint](https://eslint.org/):
-
-```
-$ yarn lint
-```
-
-The ESLint `--fix` automatically runs Prettier for you, so to check and fix the
-code, run:
-
-```
-$ yarn lint --fix
-```
-
-We use [Flow](https://flow.org/) to statically check the code and identifies
-problems:
-
-```
-$ yarn flow
-```
 
 ### Deploying the Storybook on `gh-pages`
 
@@ -154,6 +112,7 @@ deploy the build version of the Storybook on GitHub (`gh-pages`):
 ```
 $ yarn deploy-storybook
 ```
+
 
 ### Build and releases
 

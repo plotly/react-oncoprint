@@ -4,9 +4,7 @@ node_js:
   - "9"
 
 script:
-  - yarn lint
-  - yarn flow
-  - yarn test
+  - yarn build
 
 jobs:
   include:

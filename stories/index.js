@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/react';
 import { withNotes } from '@storybook/addon-notes';
 import { tablify } from 'html-tablify';
 
-import { OncoPrint } from '../src/lib';
+import { OncoPrint } from '../src';
 
-import dataset1 from '../src/demo/data/dataset1.json';
-import dataset2 from '../src/demo/data/dataset2.json';
-import dataset3 from '../src/demo/data/dataset3.json';
-import cBioPortalData from '../src/demo/data/cBioPortalData.json';
+import dataset1 from '../demo/data/dataset1.json';
+import dataset2 from '../demo/data/dataset2.json';
+import dataset3 from '../demo/data/dataset3.json';
+import cBioPortalData from '../demo/data/cBioPortalData.json';
 
 
 const createNotes = (data) => {
