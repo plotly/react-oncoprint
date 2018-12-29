@@ -31,31 +31,8 @@ export default class OncoPrint extends PureComponent {
     // Constructor
     constructor(props) {
         super(props);
-        this.state = {
-            xStart: null,
-            xEnd: null
-        };
 
-        this.resetWindowing = this.resetWindowing.bind(this);
         this.handleChange = _.debounce(this.handleChange.bind(this), 250);
-    }
-
-    // Reset windowing to user preset on init or data change
-    resetWindowing(props) {
-        const {
-            range
-        } = props;
-
-        let xStart, xEnd;
-        if (range.length === 2) {
-            xStart = range[0];
-            xEnd = range[1];
-        } else {
-            xStart = null;
-            xEnd = null;
-        }
-
-        return { xStart, xEnd };
     }
 
     // Handle plot events
@@ -83,31 +60,7 @@ export default class OncoPrint extends PureComponent {
                 x: event.points[0].x,
                 y: event.points[0].y,
             });
-        }
-        // Zoom
-        else if (event['xaxis.range[0]'] || event['xaxis.range']) {
-            this.setState({
-                xStart: event['xaxis.range[0]'] || event['xaxis.range'][0],
-                xEnd: event['xaxis.range[1]'] || event['xaxis.range'][1]
-            });
-            this.props.onChange({
-                eventType: 'Zoom',
-                xStart: event['xaxis.range[0]'] || event['xaxis.range'][0],
-                xEnd: event['xaxis.range[1]'] || event['xaxis.range'][1]
-            });
-        }
-        // Autozoom
-        else if (event['xaxis.autorange'] === true) {
-            this.setState({
-                xStart: null,
-                xEnd: null
-            });
-            this.props.onChange({
-                eventType: 'Autoscale',
-            });
-        }
-        // Guard
-        else {
+        } else {
             this.props.onChange(event);
         }
     };
@@ -205,12 +158,21 @@ export default class OncoPrint extends PureComponent {
     // Fetch layout
     getLayout() {
         const {
+            range,
             showlegend,
             showoverview,
             width,
             height,
         } = this.props;
-        const { xStart, xEnd } = this.state;
+
+        let xStart, xEnd;
+        if (_.isArray(range) && range.length === 2) {
+            xStart = range[0];
+            xEnd = range[1];
+        } else {
+            xStart = null;
+            xEnd = null;
+        }
 
         // Get initial range
         const initialRange = [xStart, xEnd];
@@ -242,24 +204,8 @@ export default class OncoPrint extends PureComponent {
         return { layout, width, height };
     }
 
-    // Set xStart and xEnd on load
-    componentDidMount() {
-        const { xStart, xEnd } = this.resetWindowing(this.props);
-        this.setState({ xStart, xEnd });
-    }
-
-    // Reset xStart and xEnd on data change
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.data !== prevProps.data) {
-            const { xStart, xEnd } = this.resetWindowing(this.props);
-            this.setState({ xStart, xEnd });
-        }
-    }
-
     // Main
     render() {
-        const { id } = this.props;
-
         const data = this.getData();
         const { layout, width, height } = this.getLayout();
         const other = {
@@ -271,13 +217,12 @@ export default class OncoPrint extends PureComponent {
         };
 
         return (
-            <div id={id}>
+            <div>
                 <Plot
                     data={data}
                     layout={layout}
                     onClick={this.handleChange}
                     onHover={this.handleChange}
-                    onRelayout={this.handleChange}
                     {...other}
                 />
             </div>

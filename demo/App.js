@@ -94,6 +94,7 @@ export default class App extends Component {
                             fontSize: '14px'
                         }}
                         value={events.join('\n')}
+                        readOnly
                     >
                     </textarea>
                 </div>
