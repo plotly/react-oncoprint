@@ -258,8 +258,6 @@ export default class OncoPrint extends PureComponent {
 
     // Main
     render() {
-        const { id } = this.props;
-
         const data = this.getData();
         const { layout, width, height } = this.getLayout();
         const other = {
@@ -271,7 +269,7 @@ export default class OncoPrint extends PureComponent {
         };
 
         return (
-            <div id={id}>
+            <div>
                 <Plot
                     data={data}
                     layout={layout}
