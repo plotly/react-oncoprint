@@ -53,7 +53,7 @@ export default class App extends Component {
                     background: "#F5F5F5"
                 }}
             >
-                <h1>dash-oncoprint Demo</h1>
+                <h1>react-oncoprint Demo</h1>
                 <div
                     style={{
                         padding: 16,

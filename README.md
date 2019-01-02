@@ -21,13 +21,13 @@ Status](https://travis-ci.org/plotly/react-oncoprint.svg?branch=master)](https:/
 
 For [yarn](https://yarnpkg.com/en/) users, run:
 
-```sh
+```
 $ yarn add react-oncoprint
 ```
 
 For [npm](https://www.npmjs.com/) users, run:
 
-```sh
+```
 $ npm install react-oncoprint
 ```
 
