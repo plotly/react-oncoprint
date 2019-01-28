@@ -16,10 +16,10 @@ import {
 
 
 /**
- * The OncoPrint component is used to view multile genetic alteration events
+ * The OncoPrint component is used to view multiple genetic alteration events
  * through an interactive and zoomable heatmap. It is a React/Dash port of the
  * popular oncoPrint() function from the BioConductor R package.
- * Under the hood, the rending is done using Plotly.js built upon D3.
+ * Under the hood, the rendering is done using Plotly.js built upon D3.
  * Plotly's interactivity allows the user to bind clicks and hovers to genetic
  * events, allowing the user to create complex bioinformatic apps or workflows
  * that rely on crossfiltering.
@@ -295,9 +295,9 @@ OncoPrint.propTypes = {
     // TODO: Add remove empty columns prop
 
     /**
-     * Adjusts the padding (amount of whitespace) between two tracks.
+     * Adjusts the padding (as a proportion of whitespace) between two tracks.
      * Value is a ratio between 0 and 1.
-     * Default of 0.05 or 5%. If set to 0 plot will look like a heatmap.
+     * Defaults to 0.05 (e.g. 5%). If set to 0, plot will look like a heatmap.
      */
     padding: PropTypes.number,
 
@@ -305,7 +305,7 @@ OncoPrint.propTypes = {
      * If not null, will override the default OncoPrint colorscale.
      * Default OncoPrint colorscale same as CBioPortal implementation.
      * Make your own colrscale as a {'mutation': COLOR} dict.
-     * Supported mutation keys in ['MISSENSE, 'INFRAME', 'FUSION',
+     * Supported mutation keys are ['MISSENSE, 'INFRAME', 'FUSION',
      * 'AMP', 'GAIN', 'HETLOSS', 'HMODEL', 'UP', 'DOWN']
      * Note that this is NOT a standard plotly colorscale.
      */
@@ -347,7 +347,7 @@ OncoPrint.propTypes = {
     ]),
 
     /**
-     * Width of the OncoPrint.
+     * Height of the OncoPrint.
      * Will disable auto-resizing of plots if set.
      */
     height: PropTypes.oneOfType([
