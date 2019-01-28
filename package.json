@@ -1,7 +1,7 @@
 {
   "name": "react-oncoprint",
   "main": "lib/index.js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A React component to create interactive OncoPrint charts.",
   "scripts": {
     "start": "webpack-serve ./webpack.serve.config.js --open",
